@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>پنل مدیریت</title>
+    <style>
+        body {
+            font-family: Vazir, sans-serif;
+            direction: rtl;
+            background-color: #fff0f5;
+            padding: 20px;
+        }
+        h1 {
+            color: #8e44ad;
+        }
+        input, select, button {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .heart {
+            color: #ccc;
+        }
+        .heart.filled {
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <h1>پنل مدیریت مشتریان</h1>
+    <form id="customerForm">
+        <label>نام:</label><br>
+        <input type="text" id="name" required><br>
+        <label>شماره تماس:</label><br>
+        <input type="text" id="phone" required><br>
+        <label>تاریخ مراجعه:</label><br>
+        <input type="text" id="date" placeholder="مثلاً 1403/03/19" required><br>
+        <label>نوع خدمات:</label><br>
+        <select id="service">
+            <option value="مانیکور">مانیکور</option>
+            <option value="پدیکور">پدیکور</option>
+            <option value="کاشت ناخن">کاشت ناخن</option>
+        </select><br>
+        <button type="submit">ذخیره مشتری</button>
+    </form>
+
+    <table id="customerTable">
+        <thead>
+            <tr>
+                <th>نام</th>
+                <th>شماره</th>
+                <th>تاریخ</th>
+                <th>خدمات</th>
+                <th>وفاداری</th>
+                <th>ویرایش</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+
+        function renderTable() {
+            const tbody = document.querySelector("#customerTable tbody");
+            tbody.innerHTML = "";
+            customers.forEach((c, index) => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${c.name}</td>
+                    <td>${c.phone}</td>
+                    <td>${c.date}</td>
+                    <td>${c.service}</td>
+                    <td>${"💜".repeat(c.visits || 0) + "🤍".repeat(7 - (c.visits || 0))}</td>
+                    <td><button onclick="editCustomer(${index})">ویرایش</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function editCustomer(index) {
+            const c = customers[index];
+            document.getElementById("name").value = c.name;
+            document.getElementById("phone").value = c.phone;
+            document.getElementById("date").value = c.date;
+            document.getElementById("service").value = c.service;
+            customers.splice(index, 1);
+            renderTable();
+        }
+
+        document.getElementById("customerForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const customer = {
+                name: document.getElementById("name").value,
+                phone: document.getElementById("phone").value,
+                date: document.getElementById("date").value,
+                service: document.getElementById("service").value,
+                visits: 1
+            };
+            customers.push(customer);
+            localStorage.setItem("customers", JSON.stringify(customers));
+            this.reset();
+            renderTable();
+        });
+
+        renderTable();
+    </script>
+</body>
+</html>
