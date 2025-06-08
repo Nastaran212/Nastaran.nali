@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مدیریت مشتریان</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="admin-panel">
+    <h1>مدیریت مشتریان</h1>
+    <input type="text" id="name" placeholder="نام مشتری" />
+    <input type="text" id="phone" placeholder="شماره تماس" />
+    <input type="text" id="date" placeholder="تاریخ (مثلاً 1403/03/18)" />
+    <input type="text" id="service" placeholder="نوع خدمات" />
+    <button onclick="addCustomer()">افزودن مشتری</button>
+    <hr/>
+    <h2>لیست مشتری‌ها</h2>
+    <ul id="customerList"></ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
