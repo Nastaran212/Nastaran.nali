@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مدیریت مشتریان</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>مدیریت مشتریان</h1>
+    <form id="addCustomerForm">
+      <input type="text" id="name" placeholder="نام مشتری" required />
+      <input type="text" id="phone" placeholder="شماره تماس" required />
+      <input type="text" id="date" placeholder="تاریخ (مثلاً 1403/03/19)" required />
+      <input type="text" id="service" placeholder="نوع خدمات" required />
+      <button type="submit">افزودن مشتری</button>
+    </form>
+    <div id="customerList"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
