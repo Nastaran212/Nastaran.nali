@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>مدیریت مشتریان</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+    <h1>پنل مدیریت مشتریان</h1>
+    <form id="addCustomerForm">
+        <label>نام:
+            <input type="text" id="name" required>
+        </label>
+        <label>شماره تماس:
+            <input type="tel" id="phone" required>
+        </label>
+        <label>تاریخ مراجعه (شمسی):
+            <input type="text" id="date" placeholder="مثلاً ۸ خرداد ۱۴۰۴" required>
+        </label>
+        <label>نوع خدمات:
+            <input type="text" id="service" required>
+        </label>
+        <button type="submit">ثبت مشتری</button>
+    </form>
+
+    <h2>لیست مشتری‌ها</h2>
+    <ul id="customerList"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
